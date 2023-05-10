@@ -7,7 +7,6 @@ export const getHourlyOrders = async () => {
   let allOrders: any[] = [];
   // date now but hard code for testing time when cron probably start "May 10, 2023 18:01:18"
   const date = new Date("May 10, 2023 18:01:18");
-  console.log(date);
   // can be more readable using momentjs
   const search_start_date = new Date(
     date.getFullYear(),
