@@ -1,5 +1,6 @@
 import { getHourlyOrders } from "./api";
 
-getHourlyOrders().then((res) =>
-  res.forEach((i) => console.log({ name: i.name, id: i.id }))
-);
+getHourlyOrders().then((res) => {
+  console.log(res);
+  res.forEach((i) => console.log({ shipping: i.shipping, id: i.id }));
+});

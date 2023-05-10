@@ -2,23 +2,27 @@ import axios from "axios";
 const storeId = "53642";
 const apiKey = "wgLNjnE8zLZwPQXFeC7mPcEkdh3ripk5WvemgBFQp2yXzFjvRx";
 axios.defaults.baseURL = "https://app.orderdesk.me/api/v2";
-
+// main function that fires with crone job
 export const getHourlyOrders = async () => {
   let allOrders: any[] = [];
-  const date = new Date();
+  // date now but hard code for testing time when cron probably start "May 10, 2023 18:01:18"
+  const date = new Date("May 10, 2023 18:01:18");
+  console.log(date);
+  // can be more readable using momentjs
   const search_start_date = new Date(
     date.getFullYear(),
     date.getMonth(),
     date.getDate(),
-    date.getHours(),
+    date.getHours() - 1,
     0,
     0
   );
+  // can be more readable using momentjs
   const search_end_date = new Date(
     date.getFullYear(),
     date.getMonth(),
     date.getDate(),
-    date.getHours(),
+    date.getHours() - 1,
     59,
     59
   );
@@ -42,6 +46,7 @@ export const getHourlyOrders = async () => {
 
       const orders = data.orders;
       allOrders.push(...orders);
+      // to know if we should take more
       const nextPage = data.total_records > initialTaken;
       const newLimit = offset + limit;
       if (nextPage) {
