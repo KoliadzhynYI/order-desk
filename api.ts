@@ -39,6 +39,7 @@ export const getHourlyOrders = async () => {
         },
         params: {
           // range We can extend the range and search_start_date will be  a couple of mins behind to be sure that we didn`t miss any orders          search_start_date,
+          search_start_date,
           search_end_date,
           limit,
           offset,
